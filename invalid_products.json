@@ -1,0 +1,17 @@
+[
+    {
+        "name": "",
+        "price": -50,
+        "category": "",
+        "quantity": 0
+    },
+    {
+        "name": "Phone",
+        "price": "wrong price",
+        "category": "Electronics"
+    },
+    {
+        "price": 100,
+        "category": "Shoes"
+    }
+]

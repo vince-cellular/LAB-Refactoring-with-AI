@@ -1,0 +1,23 @@
+[
+    {
+        "name": "Running Shoes",
+        "price": 120,
+        "category": "Shoes",
+        "additional_info": "Comfortable sports shoes",
+        "quantity": 5
+    },
+    {
+        "name": "Bluetooth Headphones",
+        "price": 80,
+        "category": "Electronics",
+        "additional_info": "Noise cancelling wireless headphones",
+        "quantity": 10
+    },
+    {
+        "name": "Smart Watch",
+        "price": 150,
+        "category": "Accessories",
+        "additional_info": "Fitness tracking smartwatch",
+        "quantity": 3
+    }
+]

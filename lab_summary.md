@@ -1,0 +1,3 @@
+# Lab Summary
+
+I completed Path 1 by refactoring my previous OpenAI API and JSON Validation project. I improved the structure by separating responsibilities into smaller helper functions, improving readability, and making the code easier to maintain. I also added clearer error handling and validated AI responses using Pydantic models. The biggest challenge was organizing the code without changing its functionality. This lab showed me how modular code is easier to understand, debug, and extend.
