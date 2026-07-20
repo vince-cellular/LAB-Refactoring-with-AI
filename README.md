@@ -1,5 +1,3 @@
----
-
 # Refactoring Approach
 
 ## Before Refactoring
@@ -15,54 +13,78 @@ The original script worked, but several responsibilities were mixed together:
 
 This made the code harder to test, maintain, and debug because changing one part could affect unrelated parts of the workflow.
 
+---
 
-## After Refactoring
+# After Refactoring
 
-The workflow was separated into smaller modules with clear responsibilities:
+The workflow was separated into smaller modules with clear responsibilities.
 
-### models.py
+## models.py
 
 Responsible only for data validation.
+
+Responsibilities:
 
 - Contains Pydantic models
 - Defines required fields and validation rules
 - Ensures invalid product data is rejected early
 
+---
 
-### file_utils.py
+## file_utils.py
 
 Responsible only for file operations.
+
+Responsibilities:
 
 - Loads JSON files
 - Handles missing files
 - Handles malformed JSON
 - Provides clear error messages with file location and problem details
 
+---
 
-### api_json_validation.py
+## api_json_validation.py
 
 Responsible for workflow coordination.
+
+Responsibilities:
 
 - Loads validated products
 - Sends product information to OpenAI
 - Generates product listings
 - Handles client requests
 
+---
 
-## Refactoring Principles Applied
+# Refactoring Principles Applied
 
-### Single Responsibility Principle
+## Single Responsibility Principle
 
 Each function and module now performs one main task.
 
-Example:
+Before refactoring:
 
-Before:
+- One large script handled loading files
+- Product validation
+- API communication
+- Batch processing
+- Error handling
+- Output formatting
 
-After:
+After refactoring:
 
+- Validation logic is inside `models.py`
+- File operations are inside `file_utils.py`
+- Workflow execution remains inside `api_json_validation.py`
 
-### Improved Error Handling
+This makes each component easier to test and modify.
+
+---
+
+# Improved Error Handling
+
+The refactored version provides clearer errors.
 
 Errors now show:
 
@@ -71,16 +93,16 @@ Errors now show:
 - The affected file or data
 - Suggested fixes
 
+---
 
-### Improved Maintainability
+# Improved Maintainability
 
-The refactored version is easier to:
+The refactored workflow is easier to:
 
 - Test
 - Debug
 - Extend
 - Reuse in future projects
-
 
 ---
 
@@ -88,46 +110,7 @@ The refactored version is easier to:
 
 ## Missing File Error
 
-Test:
+Test command:
 
 ```bash
 python -c "from file_utils import load_json_file; load_json_file('missing.json')"
-FILE ERROR:
-
-Could not find file:
-missing.json
-
-Check:
-- File name is correct
-- File exists in project folder
-python -c "from file_utils import load_json_file; load_json_file('malformed.json')"
-JSON ERROR:
-
-Invalid JSON format.
-
-File:
-malformed.json
-
-Line:
-5
-
-Column:
-7
-
-Fix the JSON syntax and try again.
-{
-"name":"",
-"price":-20,
-"category":""
-}
-3 validation errors for ProductRequest
-
-name:
-String should have at least 2 characters
-
-price:
-Input should be greater than 0
-
-category:
-String should have at least 2 characters
-
